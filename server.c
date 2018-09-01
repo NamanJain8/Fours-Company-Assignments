@@ -106,7 +106,7 @@ int main()
 		addr_size = sizeof serverStorage;
 		newSocket = accept(welcomeSocket, (struct sockaddr *) &serverStorage, &addr_size);
 
-
+	
 		recv(newSocket, input, 1024, 0);
 		printf("Request received for %s\n",input);
 
@@ -114,7 +114,7 @@ int main()
 		char *token = strtok(input, " ");
 		int cars=0,dogs=0,cats=0,trucks=0,i=0;
 
-		while(token)
+		while(token) 
 		{
 		    if(token[0]>='a' && token[0]<='z')
 		    {
@@ -146,35 +146,35 @@ int main()
 
 		char html[1024]="files/index.html";
 		FILE* fp = fopen(html, "rb");
-		fseek(fp, 0, 2);     //file pointer at the end of file
+		fseek(fp, 0, 2);     //file pointer at the end of file 
 		int sz = ftell(fp);
-		int size,code,ini,flag=0;;
-		fclose(fp);
+		int size,code,ini,flag=0;; 
+		fclose(fp); 
 
 		size = sz/4;
 		//size += ( sz%4 == 0 ) ? 0:1;
 		code = 999;
-
+		
 		fp = fopen(html, "rb");
 		send(newSocket,(void *)&code,sizeof(int),0);
-		send(newSocket,(void *)&size,sizeof(int),0);
+		send(newSocket,(void *)&size,sizeof(int),0); 
 		printf("Start HTML send\n");
 		if(fp != NULL)
 		{
-		  while(fread(&ini, sizeof(int), 1, fp))
+		  while(fread(&ini, sizeof(int), 1, fp)) 
 		  {
 		    send(newSocket,(void *)&ini,sizeof(int),0);
-		    flag++;
+		    flag++;  	               
 		  }
 		  printf("HTML Sent flag %d size %d\n \n",flag,size);
 		  fclose(fp);
-		}
-		else
+		} 
+		else 
 		{
 			perror("File");
 		}
 
-		// CARS
+		// CARS	
 
 		for(int i=1;i<=cars;i++)
 		{
@@ -187,34 +187,156 @@ int main()
 
 		  printf("Transfer  %s\n",name);
 		  FILE* fp = fopen(name, "rb");
-		  fseek(fp, 0, 2);    // file pointer at the end of file
-		  sz = ftell(fp);   // take a position of file pointer un size variable
+		  fseek(fp, 0, 2);    // file pointer at the end of file 
+		  sz = ftell(fp);   // take a position of file pointer un size variable 
 		  fclose(fp);
 		  size = sz/4;
 		  //size += ( sz%4 == 0 ) ? 0:1;
-		  code = 100+i;
+		  code = 100+i;		  
 
 		  fp = fopen(name, "rb");
 		  send(newSocket,(void *)&code,sizeof(int),0);
-		  send(newSocket,(void *)&size,sizeof(int),0);
+		  send(newSocket,(void *)&size,sizeof(int),0); 
 
 		  printf("Sending %s Now..\n",name);
 		  if(fp != NULL)
 		  {
-		    while(fread(&ini, sizeof(int), 1, fp))
+		    while(fread(&ini, sizeof(int), 1, fp)) 
 		    {
-		      send(newSocket,(void *)&ini,sizeof(int),0);
-		      flag++;
+		      send(newSocket,(void *)&ini,sizeof(int),0); 
+		      flag++;                 
 		    }
 		    printf("%s Sent Successfully! \n \n",name);
 		    fclose(fp);
-		  }
-		  else
+		  } 
+		  else 
 		  {
 		          perror("File");
 		  }
 		}
 
+
+		// CATS
+		for(int i=1;i<=cats;i++)
+		{
+		  char name[1024]="files/cat";
+		  int length = strlen(name), flag=0;
+		  char num = i+'0';
+		  name[length++]=num;
+		  name[length]='\0';
+		  strcat(name,".jpg");
+
+		  printf("Transfer  %s\n",name);
+		  FILE* fp = fopen(name, "rb");
+		  fseek(fp, 0, 2);    // file pointer at the end of file 
+		  sz = ftell(fp);   // take a position of file pointer un size variable 
+		  fclose(fp);
+		  size = sz/4;
+		  //size += ( sz%4 == 0 ) ? 0:1;
+		  code = 200+i;		  
+
+		  fp = fopen(name, "rb");
+		  send(newSocket,(void *)&code,sizeof(int),0);
+		  send(newSocket,(void *)&size,sizeof(int),0); 
+
+		  printf("Sending %s Now..\n",name);
+		  if(fp != NULL)
+		  {
+		    while(fread(&ini, sizeof(int), 1, fp)) 
+		    {
+		      send(newSocket,(void *)&ini,sizeof(int),0); 
+		      flag++;                 
+		    }
+		    printf("%s Sent Successfully! \n \n",name);
+		    fclose(fp);
+		  } 
+		  else 
+		  {
+		          perror("File");
+		  }
+		}
+
+		// DOGS
+		for(int i=1;i<=dogs;i++)
+		{
+		  char name[1024]="files/dog";
+		  int length = strlen(name), flag=0;
+		  char num = i+'0';
+		  name[length++]=num;
+		  name[length]='\0';
+		  strcat(name,".jpg");
+
+		  printf("Transfer  %s\n",name);
+		  FILE* fp = fopen(name, "rb");
+		  fseek(fp, 0, 2);    // file pointer at the end of file 
+		  sz = ftell(fp);   // take a position of file pointer un size variable 
+		  fclose(fp);
+		  size = sz/4;
+		  //size += ( sz%4 == 0 ) ? 0:1;
+		  code = 300+i;		  
+
+		  fp = fopen(name, "rb");
+		  send(newSocket,(void *)&code,sizeof(int),0);
+		  send(newSocket,(void *)&size,sizeof(int),0); 
+
+		  printf("Sending %s Now..\n",name);
+		  if(fp != NULL)
+		  {
+		    while(fread(&ini, sizeof(int), 1, fp)) 
+		    {
+		      send(newSocket,(void *)&ini,sizeof(int),0); 
+		      flag++;                 
+		    }
+		    printf("%s Sent Successfully! \n \n",name);
+		    fclose(fp);
+		  } 
+		  else 
+		  {
+		          perror("File");
+		  }
+		}
+
+		// TRUCKS
+
+		for(int i=1;i<=trucks;i++)
+		{
+		  char name[1024]="files/truck";
+		  int length = strlen(name), flag=0;
+		  char num = i+'0';
+		  name[length++]=num;
+		  name[length]='\0';
+		  strcat(name,".jpg");
+
+		  printf("Transfer  %s\n",name);
+		  FILE* fp = fopen(name, "rb");
+		  fseek(fp, 0, 2);    // file pointer at the end of file 
+		  sz = ftell(fp);   // take a position of file pointer un size variable 
+		  fclose(fp);
+		  size = sz/4;
+		  //size += ( sz%4 == 0 ) ? 0:1;
+		  code = 400+i;		  
+
+		  fp = fopen(name, "rb");
+		  send(newSocket,(void *)&code,sizeof(int),0);
+		  send(newSocket,(void *)&size,sizeof(int),0); 
+
+		  printf("Sending %s Now..\n",name);
+		  if(fp != NULL)
+		  {
+		    while(fread(&ini, sizeof(int), 1, fp)) 
+		    {
+		      send(newSocket,(void *)&ini,sizeof(int),0); 
+		      flag++;                 
+		    }
+		    printf("%s Sent Successfully! \n \n",name);
+		    fclose(fp);
+		  } 
+		  else 
+		  {
+		          perror("File");
+		  }
+		}
+		
 		code = 555;
 		send(newSocket,(void *)&code,sizeof(int),0);
 	}
