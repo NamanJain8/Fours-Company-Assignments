@@ -1,8 +1,3 @@
-
-/* credit @Daniel Scocco */
-
-/****************** CLIENT CODE ****************/
-
 #include <stdio.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
@@ -11,58 +6,90 @@
 
 int main(){
   int clientSocket;
-  char buffer[1024] = "abc.html";
+  char buffer[1024];
+  scanf("%[^\n]%*c",buffer);
+
   struct sockaddr_in serverAddr;
   socklen_t addr_size;
 
-  /*---- Create the socket. The three arguments are: ----*/
-  /* 1) Internet domain 2) Stream socket 3) Default protocol (TCP in this case) */
   clientSocket = socket(PF_INET, SOCK_STREAM, 0);
 
-  /*---- Configure settings of the server address struct ----*/
-  /* Address family = Internet */
   serverAddr.sin_family = AF_INET;
-  /* Set port number, using htons function to use proper byte order */
+
   serverAddr.sin_port = htons(5432);
-  /* Set IP address to localhost */
+
   serverAddr.sin_addr.s_addr = inet_addr("127.0.0.1");
-  /* Set all bits of the padding field to 0 */
+
   memset(serverAddr.sin_zero, '\0', sizeof serverAddr.sin_zero);
 
-  /*---- Connect the socket to the server using the address struct ----*/
   addr_size = sizeof serverAddr;
   connect(clientSocket, (struct sockaddr *) &serverAddr, addr_size);
 
-  /*---- Read the message from the server into the buffer ----*/
   send(clientSocket,buffer,1024,0);
 
-
-	FILE* fp = fopen( "received.html", "wb");
-        int tot=0,ini,b;
-        if(fp != NULL){
-            while( (b = recv(clientSocket,&ini,sizeof(int),0))> 0 ) {
-		printf("Received one packet\n"); 
-		if(ini == 0)
-			break;               
-		tot+=b;
-		
-                fwrite(&ini, sizeof(int), 1, fp);
-            }
-
-            printf("Received byte: %d\n",tot);
-            if (b<0)
-               perror("Receiving");
-
-            fclose(fp);
-        } else {
-            perror("File");
+  /*get in all files*/
+  // 10* 20* 30* 40* 999 555
+  int ini,packs,name,length;
+  char n_string[50];  
+  while(1)
+  {
+    recv(clientSocket,&name,sizeof(int),0);
+    if(name == 555)
+    {
+      printf("End of File Receive\n");
+      break;
+    }
+    
+    // printf("%s\n", );
+    recv(clientSocket,&packs,sizeof(int),0);
+    //recv(clientSocket,&name,sizeof(int),0);
+    printf("Pack %d name %d\n",packs,name );
+    if(name/100 == 1)
+    {
+      strcpy(n_string,"car");
+    }
+    else
+      if(name/100 == 2)
+      {
+        strcpy(n_string,"cat");
+      }
+      else
+        if(name/100 == 3)
+        {
+          strcpy(n_string,"dog");
         }
-  //recv(clientSocket, buffer, 1024, 0);
-  //printf("%s\n",buffer);
-
-  /*---- Print the received message ----*/
-
-  printf("Data received\n");
-
+        else
+          if(name/100 == 4)
+          {
+            strcpy(n_string,"truck");
+          }
+          else
+            if(name == 999)
+            {
+              strcpy(n_string,"index.html");
+            }
+            else
+            {
+              printf("Something's Wrong here :Invalid Response from server\n");
+              break;
+            }
+  if(name/100 !=9)
+  {
+    length = strlen(n_string);
+    n_string[length++]='0'+ (name%100);
+    n_string[length]='\0';
+    strcat(n_string,".jpg");
+  }         
+    FILE* fp = fopen(n_string, "wb");
+    printf("Receiving %s .. \n",n_string);
+    while(packs)
+    {
+      recv(clientSocket,&ini,sizeof(int),0);
+      packs--;
+    fwrite(&ini, sizeof(int), 1, fp);   
+    }
+    fclose(fp);
+    printf("Received %s successfully!: \n",n_string);
+  }
   return 0;
 }
