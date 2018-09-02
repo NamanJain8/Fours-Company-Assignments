@@ -1,14 +1,34 @@
 # Assignment 1 - Fours' Company:
-## Flow of Control & Usage
+# FLOW OF CONTROL & USAGE:
 
-* On the Server side, put together server.c and files directory. Compile the code and run the server.
+* Clone this repository
 
-* On the client side, individual client.c is sufficient. Compile the code and execute it once the server is running.
+    ```
+    git clone https://github.com/NamanJain8/assignment-1-fours-company.git
+    ```
 
-* "client.c" expects input of the form "2 cars , 3 dogs and 4 trucks" etc. The supported classes are cars, dogs, trucks and cats and the allowed number of pictures for each is between 1 and 4.
+* Navigate to the directory.
 
-* This request is then passed on to the server for processing
+    ```
+    cd assignment-1-fours-company
+    ```
 
-* "An index.html" file is created on the server, in accordance with the client request and it("index.html") along with the required images are sent to the client.
+* On the Server side, put together `server.c` and `files` directory. Compile the code and run the server.
+    
+    ```
+    gcc server.c -o server
+    ./server
+    ```
+    
+* On the client side, individual `client.c` is sufficient. Compile the code and execute it (in another terminal) once the server is running. `client.c` expects input of the form "2 cars, 3 dogs and 4 trucks" etc. and passes it on to the server.
 
-* A browser can now be used to render index.html.
+
+    ```
+    gcc client.c -o client
+    ./client
+    2 cars, 3 dogs and 4 trucks
+    ```
+
+* `index.html` file is created on the server and the required images are sent to the client (in the current directory).
+
+* A browser can now be used to render output (open the file `index.html`).
