@@ -18,7 +18,7 @@ int main(){
 
   serverAddr.sin_port = htons(5432);
 
-  serverAddr.sin_addr.s_addr = inet_addr("127.0.0.1");
+  serverAddr.sin_addr.s_addr = inet_addr("172.17.0.3");
 
   memset(serverAddr.sin_zero, '\0', sizeof serverAddr.sin_zero);
 
