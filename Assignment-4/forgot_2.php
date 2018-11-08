@@ -28,7 +28,6 @@ include_once 'includes/functions.php';
         <link rel="stylesheet" href="styles/main.css" />
     </head>
     <body>
-    <center>
     <h1>Fours Company</h1>
         <!-- Registration form to be output if the POST variables are not
         set or if the registration script caused an error. -->
@@ -39,18 +38,18 @@ include_once 'includes/functions.php';
         }
         ?>
         <form method="post" name="registration_form" action="<?php echo esc_url($_SERVER['PHP_SELF']); ?>">
-            Username: <input type='text' name='username' id='username' /><br>
+            Username: <input type='text' name='username' id='username' /><br><br>
             Security Question: <select name="security" id="security">
                                     <option value="0">What was your mother's maiden name?</option>
                                     <option value="1">What was the name of the first school you visited?</option>
-                                </select><br>
-            Answer to Security Question (Beware of Capital Letters and Special Symbols): <input type="text" name="answer" id="answer" /><br>
+                                </select><br><br>
+            Answer to Security Question: <input type="text" name="answer" id="answer" /><br><br>
             New Password: <input type="password"
                                    name="newpassword"
-                                   id="newpassword"  onkeyup="myFunction2()"/>        Password Strength: <span id="demo"></span>%<br>
+                                   id="newpassword"  onkeyup="myFunction2()"/>        Password Strength: <span id="demo"></span>%<br><br>
             Confirm New password: <input type="password"
                                      name="newconfirmpwd"
-                                     id="newconfirmpwd" /><br>
+                                     id="newconfirmpwd" /><br><br>
             <input type="button"
                    value="Click Here to get your new password"
                    onclick="return forgotregformhashsec(this.form,
@@ -58,8 +57,8 @@ include_once 'includes/functions.php';
                                    this.form.security,
                                    this.form.answer,
                                    this.form.newpassword,
-                                   this.form.newconfirmpwd);" />
-        </form>
+                                   this.form.newconfirmpwd);" /><br>
+        </form><br>
         <p>Return to the <a href="index.php">login page</a>.</p>
     </body>
 </html>

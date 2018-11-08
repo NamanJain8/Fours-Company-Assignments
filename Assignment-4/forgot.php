@@ -39,14 +39,14 @@ include_once 'includes/functions.php';
         }
         ?>
         <form method="post" name="registration_form" action="<?php echo esc_url($_SERVER['PHP_SELF']); ?>">
-            Username: <input type='text' name='username' id='username' /><br>
-            Email: <input type="text" name="email" id="email" /><br>
+            Username: <input type='text' name='username' id='username' /><br><br>
+            Email: <input type="text" name="email" id="email" /><br><br>
             <input type="button"
                    value="Click Here to get your new password on your email"
                    onclick="return forgotregformhash(this.form,
                                    this.form.username,
                                    this.form.email);" />
-        </form>
+        </form><br>
         <p>Return to the <a href="index.php">login page</a>.</p>
     </body>
 </html>

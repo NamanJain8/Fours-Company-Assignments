@@ -51,19 +51,19 @@ include_once 'includes/functions.php';
             <li>Your password and confirmation must match exactly</li>
         </ul>
         <form method="post" name="registration_form" action="<?php echo esc_url($_SERVER['PHP_SELF']); ?>">
-            Username: <input type='text' name='username' id='username' /><br>
-            Email: <input type="text" name="email" id="email" /><br>
+            Username: <input type='text' name='username' id='username' /><br><br>
+            Email: <input type="text" name="email" id="email" /><br><br>
             Password: <input type="password"
                              name="password"
-                             id="password"  onkeyup="myFunction()"/>        Password Strength: <span id="demo"></span>%<br>
+                             id="password"  onkeyup="myFunction()"/>        Password Strength: <span id="demo"></span>%<br><br>
             Confirm password: <input type="password"
                                      name="confirmpwd"
-                                     id="confirmpwd" /><br>
+                                     id="confirmpwd" /><br><br>
             Security Question: <select name="security" id="security">
                                     <option value="0">What was your mother's maiden name?</option>
                                     <option value="1">What was the name of the first school you visited?</option>
-                                </select><br>
-            Answer to Security Question (Beware of Capital Letters and Special Symbols): <input type="text" name="answer" id="answer" /><br>
+                                </select><br><br>
+            Answer to Security Question (Beware of Capital Letters and Special Symbols): <input type="text" name="answer" id="answer" /><br><br>
             <input type="button"
                    value="Register"
                    onclick="return regformhash(this.form,
@@ -73,7 +73,7 @@ include_once 'includes/functions.php';
                                    this.form.confirmpwd,
                                    this.form.security,
                                    this.form.answer);" />
-        </form>
+        </form><br>
         <p>Return to the <a href="index.php">login page</a>.</p>
     </body>
 </html>
