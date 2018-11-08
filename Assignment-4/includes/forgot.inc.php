@@ -80,13 +80,13 @@ if (isset($_POST['username'], $_POST['email'], $_POST['p'])) {
         // $pre2->execute();
 
         $myfile = fopen("file.txt", "w") or die("Unable to open file!");
-        $txt = "From: Devanshu Somani <devanshusomani99@gmail.com>\nTo: " . $username . " <" . $email . ">\nSubject: Fours Company Secure Login Password Change\nDate: " . date('D, d M Y G:i:s') . "\n\nDear " . $username . ",\nYour new password for Fours Company Secure Login is " . $actual_password . "\n";
+        $txt = "From: Fours Company <fourscompany1234@gmail.com>\nTo: " . $username . " <" . $email . ">\nSubject: Fours Company Secure Login Password Change\nDate: " . date('D, d M Y G:i:s') . "\n\nDear " . $username . ",\nYour new password for Fours Company Secure Login is " . $actual_password . "\n";
         fwrite($myfile, $txt);
         // $txt = "Jane Doe\n";
         // fwrite($myfile, $txt);
         fclose($myfile);
 
-        $cmd = "curl --url 'smtps://smtp.gmail.com:465' --ssl-reqd --mail-from 'devanshusomani99@gmail.com' --mail-rcpt '" . $email . "' --upload-file file.txt --user 'devanshusomani99@gmail.com:Your_gmail_password' --insecure";
+        $cmd = "curl --url 'smtps://smtp.gmail.com:465' --ssl-reqd --mail-from 'fourscompany1234@gmail.com' --mail-rcpt '" . $email . "' --upload-file file.txt --user 'fourscompany1234@gmail.com:company1234' --insecure";
         $output = shell_exec($cmd);
 
         // Create a random salt
