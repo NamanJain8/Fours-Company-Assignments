@@ -22,6 +22,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         <link rel="stylesheet" href="styles/main.css" />
     </head>
     <body>
+    <center>
+    <h1>Fours Company</h1>
         <h1>Your request for password change is successful! Your new password is now set!</h1>
         <p>You can now go back to the <a href="index.php">login page</a> and log in</p>
     </body>

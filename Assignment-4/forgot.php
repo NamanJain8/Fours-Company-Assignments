@@ -28,6 +28,8 @@ include_once 'includes/functions.php';
         <link rel="stylesheet" href="styles/main.css" />
     </head>
     <body>
+    <center>
+    <h1>Fours Company</h1>
         <!-- Registration form to be output if the POST variables are not
         set or if the registration script caused an error. -->
         <h1>Forgot Password</h1>

@@ -28,6 +28,8 @@ sec_session_start();
         <link rel="stylesheet" href="styles/main.css" />
     </head>
     <body>
+    <center>
+    <h1>Fours Company</h1>
         <?php if (login_check($mysqli) == true) : ?>
         <p>Welcome <?php echo htmlentities($_SESSION['username']); ?>!</p>
             <p>

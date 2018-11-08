@@ -7,6 +7,8 @@
         <script type="text/JavaScript" src="js/forms.js"></script>
     </head>
     <body>
+    <center>
+    <h1>Fours Company</h1>
         <p><a href="forgot.php">Forgot Password - Using Your E-Mail</a></p>
         <p><a href="forgot_2.php">Forgot Password - Using Your Security Question</a></p>
     </body>
