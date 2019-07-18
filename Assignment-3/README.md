@@ -1,4 +1,7 @@
-# demo
+# Assignment 3
+This is a basic app which gets the current location using geolocation API and displays it in app.
+
+## demo
 
 - Run ```npm install``` to add the node modules.
 - Use ```ionic serve --lab``` to run the project in development mode.
@@ -9,7 +12,7 @@ If you face any **enviroment changed** errors, please run ```npm rebuild node-sa
 
 Here is the [link](https://github.com/toddmotto/public-apis) to the list of public APIs.
 
-# Ionic Plugins
+## Ionic Plugins
 
 - Run ```npm install``` to install newly added node modules.
 
